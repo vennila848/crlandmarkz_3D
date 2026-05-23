@@ -1,0 +1,617 @@
+/* =========================================
+GLOBAL RESET
+========================================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#050505;
+  color:#ffffff;
+  overflow-x:hidden;
+  font-family:'Space Mono', monospace;
+  line-height:1.5;
+  margin:0;
+}
+
+/* =========================================
+THREE CANVAS
+========================================= */
+
+#three-canvas{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:1;
+}
+
+/* =========================================
+TOP PROGRESS BAR
+========================================= */
+
+#progress{
+  position:fixed;
+  top:0;
+  left:0;
+  width:0%;
+  height:4px;
+  background:#ffffff;
+  z-index:9999;
+}
+
+/* =========================================
+NOISE EFFECT
+========================================= */
+
+#noise{
+  position:fixed;
+  inset:0;
+  background-image:url('/noise.png');
+  opacity:0.03;
+  pointer-events:none;
+  z-index:10;
+}
+
+/* =========================================
+NAVBAR
+========================================= */
+
+#nav{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:25px 70px;
+
+  z-index:100;
+
+  backdrop-filter:blur(10px);
+}
+
+.logo{
+  font-size:2rem;
+  font-family:'Bebas Neue', sans-serif;
+  letter-spacing:3px;
+}
+
+.logo span{
+  color:#777;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:40px;
+  list-style:none;
+}
+
+.nav-links a{
+  position:relative;
+  color:#ffffff;
+  text-decoration:none;
+  font-size:0.95rem;
+  letter-spacing:1px;
+}
+
+.nav-links a::after{
+  content:'';
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0%;
+  height:1px;
+  background:#ffffff;
+  transition:0.4s;
+}
+
+.nav-links a:hover::after{
+  width:100%;
+}
+
+/* =========================================
+HERO SECTION
+========================================= */
+
+#hero{
+  min-height:100vh;
+
+  position:relative;
+  z-index:20;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  text-align:center;
+
+  padding:120px 20px;
+}
+
+#hero-eyebrow{
+  margin-bottom:20px;
+  color:#777;
+  letter-spacing:4px;
+  font-size:0.9rem;
+}
+
+#hero-title{
+  font-size:9vw;
+  line-height:0.9;
+  font-family:'Bebas Neue', sans-serif;
+  letter-spacing:10px;
+}
+
+#hero-title span{
+  color:#666;
+}
+
+#hero-sub{
+  margin-top:25px;
+  color:#aaaaaa;
+  max-width:700px;
+  line-height:1.8;
+}
+
+/* =========================================
+SCROLL HINT
+========================================= */
+
+#scroll-hint{
+  position:absolute;
+  bottom:40px;
+  left:50%;
+  transform:translateX(-50%);
+
+  text-align:center;
+
+  color:#777;
+  font-size:0.8rem;
+}
+
+.line{
+  width:1px;
+  height:60px;
+  background:#ffffff;
+  margin:0 auto 10px;
+}
+
+/* =========================================
+SECTION COMMON
+========================================= */
+
+#about-section,
+#projects-section,
+#view3d-section,
+#final-section{
+  position:relative;
+  z-index:20;
+  padding:120px 10%;
+}
+
+.sec-header{
+  text-align:center;
+  margin-bottom:80px;
+}
+
+.sec-header h2{
+  font-size:4rem;
+  margin-bottom:20px;
+  font-family:'Cormorant Garamond', serif;
+}
+
+.sec-header p{
+  color:#888;
+  max-width:700px;
+  margin:auto;
+  line-height:1.8;
+}
+
+/* =========================================
+ABOUT GRID
+========================================= */
+
+.about-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:40px;
+  align-items:stretch;
+}
+
+.about-card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+
+  padding:40px;
+
+  border-radius:20px;
+
+  backdrop-filter:blur(10px);
+
+  transition:0.5s;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+}
+
+.about-card:hover{
+  transform:translateY(-10px);
+  background:rgba(255,255,255,0.08);
+}
+
+.about-no{
+  display:inline-block;
+  margin-bottom:20px;
+
+  color:#777;
+  font-size:0.8rem;
+  letter-spacing:2px;
+}
+
+.about-card h3{
+  margin-bottom:20px;
+  font-size:2rem;
+}
+
+.about-card p{
+  color:#bbbbbb;
+  line-height:1.8;
+}
+
+/* =========================================
+PROJECT GRID
+========================================= */
+
+.projects-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:40px;
+  align-items:stretch;
+}
+
+.project-card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+
+  padding:40px;
+
+  border-radius:20px;
+
+  backdrop-filter:blur(10px);
+
+  transition:0.5s;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+
+  min-height:320px;
+}
+
+.project-card:hover{
+  transform:translateY(-10px);
+  background:rgba(255,255,255,0.08);
+}
+
+.floor-no{
+  color:#777;
+  font-size:0.8rem;
+  letter-spacing:2px;
+}
+
+.project-card h3{
+  margin:20px 0;
+  font-size:2rem;
+  line-height:1.3;
+}
+
+.project-card p{
+  color:#bbbbbb;
+  line-height:1.8;
+}
+
+.tag{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  margin-top:auto;
+  padding:12px 20px;
+
+  border:1px solid #555;
+  border-radius:50px;
+
+  font-size:0.8rem;
+
+  width:fit-content;
+
+  color:white;
+  text-decoration:none;
+  cursor:pointer;
+}
+
+/* =========================================
+FINAL SECTION
+========================================= */
+
+#final-section{
+  min-height:100vh;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  text-align:center;
+}
+
+#final-section h2{
+  font-size:5rem;
+  line-height:1.1;
+  font-family:'Cormorant Garamond', serif;
+}
+
+#final-section em{
+  color:#888;
+}
+
+.tagline{
+  margin-top:30px;
+  color:#999;
+  line-height:1.8;
+}
+
+.cta-btn{
+  display:inline-block;
+
+  margin-top:50px;
+  padding:18px 40px;
+
+  border:1px solid #ffffff;
+  border-radius:50px;
+
+  color:#ffffff;
+  text-decoration:none;
+
+  transition:0.5s;
+}
+
+.cta-btn:hover{
+  background:#ffffff;
+  color:#000000;
+}
+
+/* =========================================
+CUSTOM CURSOR
+========================================= */
+
+#cursor,
+#cursor-ring{
+  position:fixed;
+  top:0;
+  left:0;
+
+  pointer-events:none;
+
+  border-radius:50%;
+
+  z-index:9999;
+}
+
+#cursor{
+  width:10px;
+  height:10px;
+  background:#ffffff;
+
+  transform:translate(-50%, -50%);
+}
+
+#cursor-ring{
+  width:40px;
+  height:40px;
+
+  border:1px solid rgba(255,255,255,0.5);
+
+  transform:translate(-50%, -50%);
+}
+
+/* =========================================
+STATS PANEL
+========================================= */
+
+#stats-panel{
+  position:fixed;
+  right:40px;
+  top:50%;
+
+  transform:translateY(-50%);
+
+  z-index:100;
+}
+
+.stat-item{
+  margin-bottom:30px;
+  text-align:right;
+}
+
+.val{
+  display:block;
+  font-size:2rem;
+  font-weight:bold;
+}
+
+.lbl{
+  color:#888;
+  font-size:0.8rem;
+  letter-spacing:1px;
+}
+
+/* =========================================
+PAGE SECTION
+========================================= */
+
+.page-section{
+  min-height:100vh;
+
+  position:relative;
+  z-index:20;
+
+  padding:140px 10%;
+}
+
+.page-section h1{
+  font-size:5rem;
+  margin-bottom:30px;
+  font-family:'Cormorant Garamond', serif;
+}
+
+.page-section p{
+  max-width:700px;
+  line-height:2;
+  color:#aaa;
+  margin-bottom:20px;
+}
+
+/* =========================================
+TABLET
+========================================= */
+
+@media(max-width:992px){
+
+  .about-grid,
+  .projects-grid{
+    grid-template-columns:1fr;
+  }
+
+  #hero-title{
+    font-size:14vw;
+  }
+
+  #final-section h2{
+    font-size:4rem;
+  }
+
+  .project-card,
+  .about-card{
+    width:100%;
+  }
+}
+
+/* =========================================
+MOBILE
+========================================= */
+
+@media(max-width:768px){
+
+  #nav{
+    flex-direction:column;
+    gap:20px;
+    padding:20px;
+  }
+
+  .nav-links{
+    gap:18px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .nav-links a{
+    font-size:0.8rem;
+  }
+
+  #hero{
+    padding-top:180px;
+  }
+
+  #hero-title{
+    font-size:18vw;
+    letter-spacing:4px;
+  }
+
+  .sec-header h2{
+    font-size:3rem;
+  }
+
+  .about-card,
+  .project-card{
+    padding:30px;
+    min-height:auto;
+  }
+
+  #final-section h2{
+    font-size:3rem;
+  }
+
+  #stats-panel{
+    display:none;
+  }
+
+  .tag{
+    width:100%;
+    text-align:center;
+  }
+
+  #cursor,
+  #cursor-ring{
+    display:none;
+  }
+}
+
+/* =========================================
+SMALL MOBILE
+========================================= */
+
+@media(max-width:480px){
+
+  #hero-title{
+    font-size:20vw;
+  }
+
+  .sec-header h2{
+    font-size:2.5rem;
+  }
+
+  .about-card h3,
+  .project-card h3{
+    font-size:1.6rem;
+  }
+
+  #about-section,
+  #projects-section,
+  #view3d-section,
+  #final-section,
+  .page-section{
+    padding:100px 20px;
+  }
+
+  .logo{
+    font-size:1.5rem;
+  }
+
+  .nav-links{
+    gap:12px;
+  }
+
+  .nav-links a{
+    font-size:0.75rem;
+  }
+
+  .cta-btn{
+    width:100%;
+    text-align:center;
+  }
+}
